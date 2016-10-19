@@ -26,8 +26,8 @@ RUN usermod -a -G users www-data
 RUN chown -R www-data:www-data /var/www
 
 # Add enviromental vars and git global config
-RUN echo 'git config --global core.name $GIT_NAME' >> ~/.bashrc
-RUN echo 'git config --global core.email $GIT_EMAIL' >> ~/.bashrc
+RUN echo 'git config --global user.name $GIT_NAME' >> ~/.bashrc
+RUN echo 'git config --global user.email $GIT_EMAIL' >> ~/.bashrc
 RUN echo 'git config --global core.fileMode false' >> ~/.bashrc
 
 CMD [ "blt" ]
