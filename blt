@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-if [ -f "/root/.composer/vendor/acquia/blt/blt.sh" ]; then
-  /root/.composer/vendor/acquia/blt/blt.sh "$@"
+if [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
+  GIT_ROOT=$(git rev-parse --show-cdup)
 else
-  echo "You must run this command from within a BLT-generated project repository."
+  GIT_ROOT="."
 fi
+
+if [ -f "$GIT_ROOT/vendor/acquia/blt/blt.sh" ]; then
+  $GIT_ROOT/vendor/acquia/blt/blt.sh "$@"
+else
+  ln -s /root/.composer/vendor $GIT_ROOT/vendor
+  $GIT_ROOT/vendor/acquia/blt/blt.sh "$@"
+fi
+
