@@ -39,18 +39,23 @@ RUN buildDeps='xz-utils' \
     && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
 # Add composer dependencies
+ENV COMPOSER_HOME '/composer'
 RUN composer global require "hirak/prestissimo:^0.3"
 RUN composer global require "drupal/console:~1@dev"
-RUN composer global require "acquia/blt:^8.3"
+RUN composer global require wikimedia/composer-merge-plugin:dev-master acquia/blt:8.9.0 --no-scripts
 
 # Add blt as global
-COPY ./blt /usr/local/bin/blt
-RUN chmod +x /usr/local/bin/blt
+# COPY ./blt /usr/local/bin/blt
+# RUN chmod +x /usr/local/bin/blt
+
+# Add composer bin to path
+# RUN echo 'export PATH="$PATH:~/.composer/vendor/bin"' > ~/.bashrc
+RUN ln -s $COMPOSER_HOME/vendor/bin/blt /usr/local/bin/blt
 
 # Set directory and working permissions
 WORKDIR /var/www
 
-RUN usermod -u 1000 www-data  
+RUN usermod -u 1000 www-data
 RUN usermod -a -G users www-data
 
 RUN chown -R www-data:www-data /var/www
@@ -60,4 +65,4 @@ RUN echo 'git config --global user.name $GIT_NAME' >> ~/.bashrc
 RUN echo 'git config --global user.email $GIT_EMAIL' >> ~/.bashrc
 RUN echo 'git config --global core.fileMode false' >> ~/.bashrc
 
-CMD [ "blt" ]
+ENTRYPOINT [ "blt" ]
