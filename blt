@@ -6,10 +6,10 @@ else
   GIT_ROOT="."
 fi
 
-if [ -f "$GIT_ROOT/vendor/acquia/blt/blt.sh" ]; then
-  $GIT_ROOT/vendor/acquia/blt/blt.sh "$@"
+if [ -f "$GIT_ROOT/vendor/bin/blt" ]; then
+  $GIT_ROOT/vendor/bin/blt "$@"
 else
   ln -s /root/.composer/vendor $GIT_ROOT/vendor
-  $GIT_ROOT/vendor/acquia/blt/blt.sh "$@"
+  $GIT_ROOT/vendor/bin/blt "$@"
 fi
 
