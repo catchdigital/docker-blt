@@ -42,7 +42,7 @@ RUN buildDeps='xz-utils' \
 ENV COMPOSER_HOME '/composer'
 RUN composer global require "hirak/prestissimo:^0.3"
 RUN composer global require "drupal/console:~1@dev"
-RUN composer global require wikimedia/composer-merge-plugin:dev-master acquia/blt:8.9.0 --no-scripts
+RUN composer global require "acquia/blt:^8.9"
 
 # Add blt as global
 # COPY ./blt /usr/local/bin/blt
