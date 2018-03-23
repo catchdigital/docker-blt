@@ -1,4 +1,4 @@
-FROM php:5.6-fpm
+FROM catchdigital/php:5.6.31-fpm
 
 MAINTAINER Alberto Conteras <a.contreras@catchdigital.com>
 
