@@ -63,4 +63,3 @@ RUN echo 'git config --global user.name $GIT_NAME' >> ~/.bashrc
 RUN echo 'git config --global user.email $GIT_EMAIL' >> ~/.bashrc
 RUN echo 'git config --global core.fileMode false' >> ~/.bashrc
 
-ENTRYPOINT [ "blt" ]
