@@ -1,4 +1,4 @@
-FROM catchdigital/php:5.6.31-fpm
+FROM catchdigital/php:7.1.10-fpm
 
 MAINTAINER Alberto Conteras <a.contreras@catchdigital.com>
 
@@ -40,9 +40,7 @@ RUN buildDeps='xz-utils' \
 
 # Add composer dependencies
 ENV COMPOSER_HOME '/composer'
-RUN composer global require "hirak/prestissimo:^0.3"
-RUN composer global require "drupal/console:~1@dev"
-RUN composer global require "acquia/blt:^8.9"
+RUN composer global require "acquia/blt:^9.0"
 
 # Add blt as global
 # COPY ./blt /usr/local/bin/blt
