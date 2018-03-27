@@ -1,4 +1,4 @@
-FROM catchdigital/php:5.6.31-fpm
+FROM catchdigital/php:7.1.10-fpm
 
 MAINTAINER Alberto Conteras <a.contreras@catchdigital.com>
 
@@ -40,8 +40,6 @@ RUN buildDeps='xz-utils' \
 
 # Add composer dependencies
 ENV COMPOSER_HOME '/composer'
-RUN composer global require "hirak/prestissimo:^0.3"
-RUN composer global require "drupal/console:~1@dev"
 RUN composer global require "acquia/blt:^8.9"
 
 # Add blt as global
@@ -64,5 +62,3 @@ RUN chown -R www-data:www-data /var/www
 RUN echo 'git config --global user.name $GIT_NAME' >> ~/.bashrc
 RUN echo 'git config --global user.email $GIT_EMAIL' >> ~/.bashrc
 RUN echo 'git config --global core.fileMode false' >> ~/.bashrc
-
-ENTRYPOINT [ "blt" ]
